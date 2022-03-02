@@ -3,7 +3,7 @@ git 명령어
 - git init (연동)
 - git add *
 - git commit -m "파일명"
-- git remote add origin https://github.com/Sammysoss/polls.git
+- git remote add origin https://github.com/Sammysoss/pyweb.git
 - ( git branch master )
 - git push -u origin master    #원격에 업로드
 ========================================================
