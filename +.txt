@@ -1,0 +1,97 @@
+
+git 명령어
+- git init (연동)
+- git add *
+- git commit -m "파일명"
+- git remote add origin https://github.com/Sammysoss/polls.git
+- ( git branch master )
+- git push -u origin master    #원격에 업로드
+========================================================
+
+프로젝트 생성 (cmd)
+프로젝트 폴더 > django-admin startproject config .
+
+앱 생성 - 파이참 또는 cmd 작성
+python manage.py startapp poll
+
+서버 작동
+python manage.py runserver
+
+앱을 db에 이주시킴(적용)
+python manage.py migrate
+
+========================================================
+적용된 마이그레이션 파일은 절대로 삭제하시면 안됩니다.
+ 마이그레이션은 이전 버전에 대해 의존성을 가지기 때문에
+ DB 전체가 돌아올 수 없는 강을 건널 수도 있습니다.
+
+마이그레이션 파일을 삭제하시려면 반드시 적용을 해제하고 삭제하셔야 합니다.
+
+예를 들어
+
+0001_initial
+0002_auto_....
+
+이렇게 두 개의 마이그레이션 파일이 있고 0002가 migrate 된 상황이라고 가정합시다.
+
+이 때 0002 마이그레이션 파일을 삭제하고 싶다면
+
+1. python manage.py migrate app_name 0001 명령어로 이전 버전으로 적용시킨후 삭제
+
+2. python manage.py migrate app_name zero 명령어로 마이그레이션을 초기화 시킨 수 삭제
+
+둘 중 하나의 절차를 거친 후 삭제하셔야 합니다.
+
+물론 DB 전체를 날려도 되는 상황이라면 그냥 마이그레이션 파일을 다 날려버리고
+DB파일도 날려버리면 되지만 그게 아니라면.. 반드시 위의 절차를 준수하여 주시기 바랍니다.
+============================================================================
+웹페이지 만들기
+1. url 경로
+2. 제어 함수
+3. 템플릿 - html
+
+관계형 데이터베이스 (RDBMS) - SQL
+객체 관계형 매핑 (ORM) - 클래스와 객체
+웹 프레임워크 - 장고, 스프링, node.js,,,
+
+
+M(Model) T(Templates) V(View) 패턴
+모델 클래스 작성 후 (수정 등)
+1. python manage.py makemigrations -> 장고에 저장
+2. python manage.py migrate  -> db에 적용
+
+=====================================================
+설정- python manage.py shell
+import - from poll.models import Question, Choice
+        - from django.utils import timezone
+조회- Question.objects.all()
+삽입 - q = Question(question_text='', pub_date=timezone.now())  -> q.save()
+재조회- Question.objects.all()
+1개 조회- Question.objects.get(id=1)
++
+q.choice_set.all() - q 에 속한 모든 것
++
+c = Choice(choice_text='화이자', votes=0, question=q) - c.save()
+Choice.objects.all()
+
+==============================================================
+
+관리자 아이디 /비밀번호 생성
+python manage.py createsuperuser
+
+프로젝트 생성 - polls>django-admin startproject config .
+앱 생성 (터미널,cmd) - python manage.py startapp poll
+서버 작동 - python manage.py runserver
+앱을 db에 적용 - python manage.py migrate
+=======================================
+
+pybo
+질문/답변 게시판
+Question
+- 제목
+- 내용
+- 작성일
+Answer
+- 내용
+- 작성일
+- 제목: foreign key(설정)
