@@ -1,5 +1,5 @@
 from django import forms
-from board.models import Question
+from board.models import Question, Answer
 
 # 질문 등록 폼
 class QuestionForm(forms.ModelForm):
@@ -10,4 +10,12 @@ class QuestionForm(forms.ModelForm):
             'subject':'제목',
             'content':'내용',
         }
+
+# 질문 답변 폼
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = ['content']
+        lables = {'content':'내용'}
+
 
