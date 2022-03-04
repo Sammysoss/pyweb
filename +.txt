@@ -96,3 +96,13 @@ Answer
 - 작성일
 - 제목: foreign key(설정)
 ====================================================
+함수형 뷰 방식 - FBV (Fucntion Based View): def 함수명
+클래스형 뷰 방식 - CBV (Class Based View): 클래스 제공됨
+회원관리 - 클래스형 + 함수형
+
+표준 html 기본 파일- base.html
+확장사용 -{% extends 'base.html' %}
+
+자바스크립트 - 웹에 최적화한 라이브러리 -> 제이쿼리(jQuery)
+장고의 회원관리
+python manage.py startapp common
