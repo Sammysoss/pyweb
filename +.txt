@@ -106,3 +106,14 @@ Answer
 자바스크립트 - 웹에 최적화한 라이브러리 -> 제이쿼리(jQuery)
 장고의 회원관리
 python manage.py startapp common
+
+===================================================
+
+Model 모델
+User 클래스
+
+Question
+왜래키 - author 생성
+
+Answer
+왜래키 - author 생성
