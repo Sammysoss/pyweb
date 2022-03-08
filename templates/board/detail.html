@@ -27,9 +27,11 @@
                 <div>
                     <a href="{% url 'board:question_modify' question.id %}"
                        class="btn btn-outline-secondary">수정</a>
-                    <a href="{% url 'board:question_delete'  question.id %}"
+                    <a href="#" data-uri = "{% url 'board:question_delete'  question.id %}"
+                       class="delete btn btn-outline-secondary">삭제</a>
+                    <!-- <a href="{% url 'board:question_delete'  question.id %}"
                        onclick="return confirm('정말로 삭제하시겠습니까?')"
-                       class="btn btn-outline-secondary">삭제</a>
+                       class="btn btn-outline-secondary">삭제</a> -->
                 </div>
                 {% endif %}
             </div>
@@ -59,9 +61,11 @@
                 <div>
                     <a href="{% url 'board:answer_modify' answer.id %}"
                        class="btn btn-outline-secondary">수정</a>
-                    <a href="{% url 'board:answer_delete'  answer.id %}"
+                    <a href="#" data-uri ="{% url 'board:answer_delete'  answer.id %}"
+                       class="delete btn btn-outline-secondary">삭제</a>
+                    <!-- <a href="{% url 'board:answer_delete'  answer.id %}"
                        onclick="return confirm('정말로 삭제하시겠습니까?')"
-                       class="btn btn-outline-secondary">삭제</a>
+                       class="btn btn-outline-secondary">삭제</a> -->
                 </div>
                 {% endif %}
             </div>
@@ -79,23 +83,14 @@
       </form>
     </div>
 {% endblock %}
-
-<!--
-      <h2>{{ question.subject }}</h2>
-      <p>{{ question.content }}</p>
-      <h4>{{ question.answer_set.count }}개의 답변이 있습니다.</h4>
-      <div>
-          <ul>
-              {% for answer in question.answer_set.all %}
-              <li>{{ answer.content }}</li>
-              {% endfor %}
-          </ul>
-      </div>
-      <form action="{% url 'board:answer_create' question.id %}" method="post">
-          {% csrf_token %}
-          <div>
-              <textarea name="content" rows="7" cols="60"></textarea>
-          </div>
-          <input type="submit" value="답변 등록">
-      </form>
-      -->
+{% block script %}
+<script>
+    $(document).ready(function(){
+        $('.delete').click(function(){
+            if(confirm('정말로 삭제하시겠습니까?')){
+                location.href=$(this).data('uri');
+            }
+        });
+    });
+</script>
+{% endblock %}

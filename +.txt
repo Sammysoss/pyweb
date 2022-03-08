@@ -123,5 +123,7 @@ pyweb - 기본 50 점
 
 추가 점수
 설문 조사앱(poll) ~30 점
+
 메인 페이지 디자인 ~20 점
 
+python manage.py startapp poll
