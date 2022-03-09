@@ -2,36 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>설문 항목</title>
     {% load static %}
-    <link rel="stylesheet" href="{%static 'poll/style.css' %}">
+    <link rel="stylesheet" href="{%static 'poll/css/style.css' %}">
+    <link rel="stylesheet" href="{%static 'poll/css/bootstrap.css' %}">
 </head>
 <body>
-<!--
-<h2>{{ question.question_text }}</h2>
-    <ul>
-        {% for choice in question.choice_set.all %}
-        <li>{{ choice.choice_text }}</li>
-        {% endfor %}
-    </ul>
--->
+{% include 'navbar.html' %}
 <div id="container">
     <section>
         <form action="{% url 'poll:vote' question.id %}" method="post">
-            {% csrf_token %}  <!-- 필수사항(보안) -->
-            <fieldset>
-                <legend>{{ question.question_text }}</legend>
-                {% if error %}
-                    <p>{{ error }}</p>
-                {% endif %}
-                {% for choice in question.choice_set.all %}
-                <p>
-                    <input type="radio" name="choice" value="{{ choice.id }}">
-                    <label>{{ choice.choice_text }}</label>
-                </p>
-                {% endfor %}
-            </fieldset>
-            <p><input type="submit" value="투표"></p>
+            {% csrf_token %}
+            <div class="card" style ='width: 50rem;'>
+                <div class="card-body">
+                    <fieldset>
+                        <legend>{{ question.question_text }}</legend>
+                        {% if error %}
+                            <p style="color: #f00;">{{ error }}</p>
+                        {% endif %}
+                        {% for choice in question.choice_set.all %}
+                        <p>
+                            <input type="radio" name="choice" value="{{ choice.id }}">
+                            <label>{{ choice.choice_text }}</label>
+                        </p>
+                        {% endfor %}
+                    </fieldset>
+                    <p><input type="submit" value="투표" class="btn btn-success"></p>
+                </div>
+            </div>
         </form>
     </section>
 </div>

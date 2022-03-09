@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'board',
     'common',
     'poll',
+
 ]
 
 MIDDLEWARE = [

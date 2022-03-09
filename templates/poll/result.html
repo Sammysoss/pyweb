@@ -2,23 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>투표 결과</title>
     {% load static %}
-    <link rel="stylesheet" href="{%static 'poll/style.css' %}">
+    <link rel="stylesheet" href="{%static 'poll/css/style.css' %}">
+    <link rel="stylesheet" href="{%static 'poll/css/bootstrap.css' %}">
 </head>
 <body>
+{% include 'navbar.html' %}
 <div id="container">
     <section>
-        <h2>{{ question.question_text }}</h2>
-        <ul>
-            {% for choice in question.choice_set.all %}
-            <li>
-                {{ choice.choice_text }} -- {{ choice.votes }}votes
-            </li>
-            {% endfor%}
-        </ul>
-        <!--    <p><a href="{% url 'poll:index' %}">설문 목록</a></p>-->
-        <p><button type="button" onclick="location.href='/poll/'">설문 목록</button></p>
+        <div class="card" style ='width: 50rem;'>
+            <div class="card-body">
+                <h2>{{ question.question_text }}</h2>
+                <ul>
+                    {% for choice in question.choice_set.all %}
+                    <li>
+                        Votes : {{ choice.choice_text }} [ {{ choice.votes }} ]
+                    </li>
+                    {% endfor%}
+                </ul>
+                <p><button type="button" onclick="location.href='/poll/'" class="btn btn-success">설문 목록</button></p>
+            </div>
+        </div>
     </section>
 </div>
 </body>
