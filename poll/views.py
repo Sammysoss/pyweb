@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from poll.models import Question
 
-@login_required(login_url='common:login')
+@login_required(login_url='common:login_view')
 def index(request):
     question_list = Question.objects.all()
     return render(request, 'poll/index.html', {'question_list': question_list})
