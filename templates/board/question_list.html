@@ -6,7 +6,7 @@
 {% block content %}
   <div class="container my-3">
       <table class="table">
-          <thead class="thead-dark">
+          <thead class="thead-light">
             <tr>
                 <th>번호</th><th>제목</th><th>글쓴이</th><th>작성일</th>
             </tr>
@@ -28,24 +28,18 @@
             {% endif %}
           </tbody>
       </table>
+      <!-- 페이지 처리 영역 -->
+      <!-- 페이지 리스트(목록) -->
+      <ul class="pagination justify-content-center">
+      {% for page_number in question_list.paginator.page_range %}
+          <li class="page-item">
+              <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+          </li>
+      {% endfor %}
+      </ul>
+
+
       <a href="{% url 'board:question_create' %} " class="btn btn-primary">질문 등록</a>
   </div>
 {% endblock %}
 
-
-    <!-- 부트스트랩 적용 전
-      <h1>질문 목록입니다.</h1>
-      {% if question_list %}
-        <ul>
-            {% for question in question_list %}
-            <li>
-                <a href="{% url 'board:detail' question.id %}">{{ question.subject }}</a>
-                <a href="board/{{ question.id }}/">{{ question.subject }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-      {% else %}
-      <p>질문이 없습니다.</p>
-      {% endif %}
-      <a href="{% url 'board:question_create' %}">질문 등록</a>
-      -->
