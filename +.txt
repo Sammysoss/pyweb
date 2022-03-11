@@ -157,6 +157,9 @@ cd bin
 db 적용
 (venvs) 01:49 ~/pyweb (master)$ python manage.py migrate
 
+다시 불러오기
+git stash
+git pull
 
 
 
