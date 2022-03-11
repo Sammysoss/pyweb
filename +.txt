@@ -134,12 +134,28 @@ python manage.py startapp poll
 항상 1로 시작하는 게시물 번호 해결
 번호 = 전체게시물 수 - 시작인덱스 - 현재 인덱스(0~) + 1
 
+================================================
+파이썬 웹
 
+https://www.pythonanywhere.com/user/sammysoss/
+clone https://github.com/Sammysoss/pyweb
 
+디렉토리 검색 ls
+파일 지우기 rm -rf venvs
 
+가상화 설정
+pyweb안에서
+virtualenv venvs --python=python3.8
+cd venvs
+cd bin
+. activate
 
+장고 설치
+(venvs) 01:44 ~/pyweb/venvs/bin (master)$ cd ~/pyweb
+(venvs) 01:45 ~/pyweb (master)$ pip install django
 
-
+db 적용
+(venvs) 01:49 ~/pyweb (master)$ python manage.py migrate
 
 
 
