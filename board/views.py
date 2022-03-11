@@ -67,7 +67,7 @@ def answer_create(request, question_id):
     context = {'question':question, 'form':form}
     return render(request, 'board/detail.html', context)
 
-@login_required(login_url='common:login')
+@login_required(login_url='common:login_view')
 def question_modify(request, question_id):
     # 질문 수정
     question = Question.objects.get(id=question_id)
@@ -85,7 +85,7 @@ def question_modify(request, question_id):
     return render(request, 'board/question_form.html', context)
 
 
-@login_required(login_url='common:login')
+@login_required(login_url='common:login_view')
 def answer_modify(request, answer_id):
     # 답변 수정
     answer = Answer.objects.get(id=answer_id)
@@ -104,7 +104,7 @@ def answer_modify(request, answer_id):
 
 
 
-@login_required(login_url='common:login')
+@login_required(login_url='common:login_view')
 def question_delete(request, question_id):
     # 질문 삭제
     question = Question.objects.get(id=question_id)
@@ -112,7 +112,7 @@ def question_delete(request, question_id):
     return redirect('board:boardlist')  # 질문 목록
 
 
-@login_required(login_url='common:login')
+@login_required(login_url='common:login_view')
 def answer_delete(requset, answer_id):
     # 답변 삭제
     answer = Answer.objects.get(id=answer_id)
