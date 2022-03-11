@@ -8,7 +8,9 @@ class Question(models.Model):
     modify_date = models.DateTimeField(null=True, blank=True) # null 값 허용/ blank- 폼 데이터null
 
     # user의 username과 외래키 설정
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_question')
+    # 추천수 기능 (다대다 관계)
+    voter = models.ManyToManyField(User, related_name='voter_question')
 
     def __str__(self):
         return self.subject
