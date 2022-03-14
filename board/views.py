@@ -136,4 +136,3 @@ def vote_question(request, question_id):
 
 
 
-
