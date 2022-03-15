@@ -17,9 +17,7 @@ def vote_question(request, question_id):
     if request.user == question.author:
         messages.error(request, '본인이 작성한 글은 추천할 수 없습니다.')
 
-    # 추천 두번 안된다는 메시지 띄우기
-    # elif:
-    #     messages.error(request, '추천은 한 번만 할 수 있습니다.')
     else:
         question.voter.add(request.user)     # 추천 1 증가
+        messages.error(request, '추천은 한 번만 할 수 있습니다.')
     return redirect('board:detail', question_id=question_id)
