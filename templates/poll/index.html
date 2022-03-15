@@ -7,6 +7,7 @@
     {% load static %}
     <link rel="stylesheet" href="{%static 'poll/css/style.css' %}">
     <link rel="stylesheet" href="{%static 'poll/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'board/css/style.css/' %}">
 </head>
 <body>
 {% include 'navbar.html' %}
@@ -32,6 +33,8 @@
             </section>
         </div>
     </div>
+    <div class="question_form"></div>
 </div>
+{% include 'footer.html' %}
 </body>
 </html>

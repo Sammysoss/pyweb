@@ -7,6 +7,7 @@
     {% load static %}
     <link rel="stylesheet" href="{%static 'poll/css/style.css' %}">
     <link rel="stylesheet" href="{%static 'poll/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'board/css/style.css/' %}">
 </head>
 <body>
 {% include 'navbar.html' %}
@@ -25,7 +26,9 @@
                 <p><button type="button" onclick="location.href='/poll/'" class="btn btn-success">설문 목록</button></p>
             </div>
         </div>
+        <div class="question_form"></div>
     </section>
 </div>
+{% include 'footer.html' %}
 </body>
 </html>
