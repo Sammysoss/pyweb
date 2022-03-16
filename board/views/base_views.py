@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
@@ -18,12 +19,25 @@ def boardlist(request):
     # 질문 목록
     question_list = Question.objects.order_by('-create_date')  #'-'내림 차순, -pk도 가능
     # question_list = Question.objects.all()  #db에서 전체 검색
+    page = request.GET.get('page', '1')
+    kw= request.GET.get('kw', '')
+
+    # 검색 처리
+    if kw:
+        question_list = question_list.filter(
+            Q(subject__icontains=kw) |                                # 제목 검색(밑줄 2개)
+            Q(content__icontains=kw) |                                # 내용 검색
+            Q(author__username__icontains=kw) |                # 질문 글쓴이 검색
+            Q(answer__author__username__icontains=kw) |   # 답변 글쓴이 검색
+            Q(answer__content__icontains=kw)  |                  # 답변내용 검색
+            Q(comment__content__icontains=kw)                    # 댓글 내용 검색
+        ).distinct()
+
 
     # 페이징 처리
-    page = request.GET.get('page', '1')
     paginator = Paginator(question_list, 8)  # 페이지당 8개 자료
     page_obj = paginator.get_page(page)
-    context= {'question_list':page_obj}
+    context= {'question_list':page_obj, 'page':page, 'kw':kw}
     return render(request, 'board/question_list.html', context)
 
 def detail(request, question_id):
